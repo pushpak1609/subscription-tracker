@@ -16,5 +16,6 @@ export const { PORT,
     QSTASH_CURRENT_SIGNING_KEY,
     QSTASH_NEXT_SIGNING_KEY,
     SERVER_URL,
-    EMAIL_PASSWORD
+    EMAIL_PASSWORD,
+    BREVO_API_KEY
  } = process.env;

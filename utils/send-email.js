@@ -40,11 +40,10 @@
 //     });
 // };
 
-
-
 import dayjs from "dayjs";
 import { emailTemplates } from "./email-template.data.js";
 import { sendMail } from "../config/nodemailer.js";
+import { SERVER_URL } from "../config/env.js";
 
 export const sendRemainderEmail = async ({ to, type, subscription }) => {
     if (!to || !type) throw new Error('Missing required parameters');
@@ -60,6 +59,7 @@ export const sendRemainderEmail = async ({ to, type, subscription }) => {
         planName: subscription.frequency,
         price: `${subscription.currency} ${subscription.price} / ${subscription.frequency}`,
         paymentMethod: subscription.paymentMethod,
+        accountSettingsLink: `${SERVER_URL}/account`,
         supportLink: `${SERVER_URL}/support`,
     };
 

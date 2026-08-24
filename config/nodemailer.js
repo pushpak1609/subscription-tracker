@@ -1,14 +1,17 @@
 import nodemailer from 'nodemailer'
-import { EMAIL_PASSWORD} from './env.js'
+import { EMAIL_PASSWORD } from './env.js'
 
-export const accountMail='hingepushpak4@gmail.com'
+export const accountMail = 'hingepushpak4@gmail.com'
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth:{
-        user:accountMail,
-        pass:EMAIL_PASSWORD
-    }
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for port 465
+    auth: {
+        user: accountMail,
+        pass: EMAIL_PASSWORD
+    },
+    family: 4 // <-- forces IPv4, avoids ENETUNREACH on Render
 })
 
 export default transporter;

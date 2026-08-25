@@ -10,11 +10,12 @@ import arcjetMiddleware from './middlewares/arcjet.middleware.js';
 import workflowRouter from './routes/workflow.routes.js';
 import cors from "cors";
 
+
+const app = express();
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }));
-const app = express();
 app.set('trust proxy', true);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -12,10 +12,15 @@ import cors from "cors";
 
 
 const app = express();
+
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+    origin: [
+        "http://localhost:5173",
+        "https://subscription-tracker-frontend-three.vercel.app"
+    ]
 }));
+
+
 app.set('trust proxy', true);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -1,8 +1,16 @@
+
 import aj from "../config/arcjet.js";
 
 const arcjetMiddleware = async (req, res, next) => {
   try {
     const decision = await aj.protect(req, { requested: 1 });
+
+    console.log("Arcjet Decision:", {
+      id: decision.id,
+      conclusion: decision.conclusion,
+      reason: decision.reason,
+      results: decision.results,
+    });
 
     if (decision.isDenied()) {
       if (decision.reason.isRateLimit()) {
@@ -11,6 +19,10 @@ const arcjetMiddleware = async (req, res, next) => {
 
       if (decision.reason.isBot()) {
         return res.status(403).send("Bot detected");
+      }
+
+      if (decision.reason.isShield()) {
+        return res.status(403).send("Blocked by Arcjet Shield");
       }
 
       return res.status(403).send("Forbidden");

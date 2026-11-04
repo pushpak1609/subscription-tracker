@@ -1,3 +1,4 @@
+
 import arcjet, { shield, detectBot, tokenBucket } from "@arcjet/node";
 import { ARCJET_KEY } from "./env.js";
 
@@ -13,8 +14,9 @@ const aj = arcjet({
     detectBot({
       mode: "LIVE",
       allow: [
-        "CATEGORY:SEARCH_ENGINE", // Google, Bing, etc
-        "CURL",                   // allows Postman / curl-style requests during dev/testing
+        "CATEGORY:SEARCH_ENGINE",
+        "CATEGORY:MONITOR",
+        "CURL",
       ],
     }),
 
